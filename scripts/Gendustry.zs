@@ -113,7 +113,7 @@ val RedAlloyDust = <ore:dustRedAlloy>;
 
 val Luminator = <IC2:blockLuminatorDark>;
 val UnivFluidCell = <IC2:itemFluidCell>;
-val SugarCell = UnivFluidCell.withTag({Fluid:{FluidName:"molten.sugar", Amount:1000}});
+//val SugarCell = UnivFluidCell.withTag({Fluid:{FluidName:"molten.sugar", Amount:1000}});
 val WaterCell = <ore:cellWater>;
 val LavaCell = <ore:cellLava>;
 val IceCell = <ore:cellIce>;
@@ -398,7 +398,7 @@ recipes.addShaped(UpFrame, [
 recipes.addShaped(ProductionUp, [ 
 [SSteelPlate, RoyalJelly, SSteelPlate],
 [SmallTiGear, UpFrame, SmallTiGear],
-[SSteelPlate, SugarCell, SSteelPlate]]);
+[SSteelPlate, <minecraft:sugar>, SSteelPlate]]);
 
 // --- Lifespan Upgrade
 recipes.addShaped(LifespanUp, [

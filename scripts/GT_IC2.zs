@@ -23,6 +23,7 @@ var cableGold1x = <ore:cableGt01Gold>;
 var cableGold2x = <ore:cableGt02Gold>;
 var circuitBasic = <ore:circuitBasic>;
 var circuitAdvanced = <ore:circuitAdvanced>;
+var circuitDataStorage = <gregtech:gt.metaitem.01:32704>;
 var circuitEnergyFlow = <gregtech:gt.metaitem.01:32706>;
 var coil = <IC2:itemRecipePart>;
 var craftingGenerator = <ore:craftingGenerator>;
@@ -112,14 +113,17 @@ var HVblockCasing = <gregtech:gt.blockcasings:3>;
 var TFBP = <IC2:itemTFBP>;
 var circuitEFlow = <gregtech:gt.metaitem.01:32706>;
 var FieldGeneratorHV = <gregtech:gt.metaitem.01:32672>;
+var FieldGeneratorEV = <gregtech:gt.metaitem.01:32673>;
 var emitterMV = <gregtech:gt.metaitem.01:32681>;
 var emitterHV = <gregtech:gt.metaitem.01:32682>;
+var emitterEV = <gregtech:gt.metaitem.01:32683>;
 var cableHVGold = <gregtech:gt.blockmachines:1426>;
 var DataOrb = <gregtech:gt.metaitem.01:32707>;
 
 var NucReactor = <IC2:blockGenerator:5>;
 var RTG = <IC2:blockGenerator:6>;
 //val ReactorThickReflector = <IC2:reactorReflectorThick>;
+var LapotronicCrystal = <IC2:itemBatLamaCrystal:26>;
 
 var SmallPowerUnit = <IC2:itemRecipePart:3>;
 var ElectricWrench = <IC2:itemToolWrenchElectric>;
@@ -160,7 +164,7 @@ var steelFluidPipe = <gregtech:gt.blockmachines:5132>;
 	val DenseBronsePlate = <ore:plateDenseBronse>;val specificDenseBronsePlate = <gregtech:gt.metaitem.01:22300>;
 	val DenseElectrumPlate = <ore:plateDenseElectrum>;
 	val DenseTinPlate = <ore:plateDenseTin>;
-	val DenseRedAlloyPlate = <ore:plateRedAlloy>;
+	val RedAlloyPlate = <ore:plateRedAlloy>;
 	val DenseLapisPlate = <ore:plateDenseLapis>; val specificDenseLapisPlate = <IC2:itemDensePlates:8>;
 
 	val ReactorPlate = <IC2:reactorPlating>;
@@ -646,12 +650,12 @@ recipes.addShaped(<IC2:blockNuke>, [
 
 
 	//RSH Condensator
-	recipes.remove(ReactorCondensator);
-	recipes.addShaped(ReactorCondensator, [
-	[DenseRedAlloyPlate, ReactorHeatSwitchCore, DenseRedAlloyPlate],
-	[DenseRedAlloyPlate, ReactorHeatVentCore, DenseRedAlloyPlate],
-	[DenseRedAlloyPlate, ReactorHeatSwitchCore, DenseRedAlloyPlate]]);
-	recipes.addShapeless(ReactorCondensator, [<IC2:reactorCondensator:9999>, DenseRedAlloyPlate, DenseRedAlloyPlate, DenseRedAlloyPlate]);
+	recipes.remove(<IC2:reactorCondensator:1>);
+	recipes.addShaped(<IC2:reactorCondensator:1>, [
+	[RedAlloyPlate, ReactorHeatSwitchCore, RedAlloyPlate],
+	[RedAlloyPlate, ReactorHeatVentCore, RedAlloyPlate],
+	[RedAlloyPlate, ReactorHeatSwitchCore, RedAlloyPlate]]);
+	recipes.addShapeless(<IC2:reactorCondensator:1>, [<IC2:reactorCondensator:9998>, RedAlloyPlate, RedAlloyPlate, RedAlloyPlate]);
 
 	
 	//Coke coal block
@@ -665,11 +669,12 @@ recipes.addShaped(<IC2:blockNuke>, [
 
 
 	//LZH Condensator+
-	recipes.addShaped(<IC2:reactorCondensatorLap>, [
+	recipes.remove(<IC2:reactorCondensatorLap:1>);
+	recipes.addShaped(<IC2:reactorCondensatorLap:1>, [
 	[LapisPlate, ReactorHeatVentGold, LapisPlate],
-	[<IC2:reactorCondensator>, LapisPlate, <IC2:reactorCondensator>],
+	[<IC2:reactorCondensator:1>, LapisPlate, <IC2:reactorCondensator:1>],
 	[LapisPlate, ReactorHeatSwitchSpread, LapisPlate]]);
-	recipes.addShapeless(<IC2:reactorCondensatorLap>, [<IC2:reactorCondensatorLap:9999>, LapisPlate, LapisPlate, LapisPlate]);
+	recipes.addShapeless(<IC2:reactorCondensatorLap:1>, [<IC2:reactorCondensatorLap:9998>, LapisPlate, LapisPlate, LapisPlate]);
 
 	//Biogas Jetpack-
 	//recipes.remove(<IC2:itemArmorJetpack>);
@@ -858,3 +863,11 @@ recipes.addShaped(<minecraft:lead>, [
 //IC Uran block
 recipes.remove(<IC2:blockMetal:3>);
 Compressor.addRecipe(<IC2:blockMetal:3>, <IC2:itemUran238> * 9);
+
+//EV Microwave Energy Transmitter
+var MicTransmitterEV = <gregtech:gt.blockmachines:1162>;
+recipes.remove(MicTransmitterEV);
+recipes.addShaped(MicTransmitterEV, [
+    [emitterEV, FieldGeneratorEV, emitterEV], 
+    [emitterEV, HullEV, emitterEV],
+    [<ore:circuitData>, LapotronicCrystal, <ore:circuitData>]]);
